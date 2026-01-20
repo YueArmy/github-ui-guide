@@ -1,0 +1,19 @@
+# Secrets
+config.local.js
+.env
+.env.local
+
+# Claude local settings
+CLAUDE.local.md
+.claude/settings.local.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Clasp (GAS)
+.clasp.json
