@@ -34,6 +34,8 @@ GitコマンドとGitHub UIの関係を視覚的に学べるインタラクテ�
 ```
 github-ui-guide/
 ├── CLAUDE.md
+├── README.md
+├── index.html              # GitHub Pages用リダイレクト
 ├── .claude/
 │   ├── rules/
 │   │   ├── coding.md
@@ -43,15 +45,25 @@ github-ui-guide/
 ├── src/
 │   ├── index.html          # メインページ
 │   ├── css/
-│   │   └── github-theme.css
+│   │   ├── style.css       # 基本スタイル
+│   │   └── github-theme.css # GitHub UIスタイル
 │   └── js/
-│       ├── app.js          # メインロジック
-│       ├── git-simulator.js # Gitコマンド処理
-│       └── ui-renderer.js  # GitHub UI描画
+│       ├── app.js          # 状態管理
+│       ├── cli.js          # CLI入出力
+│       ├── commands.js     # Gitコマンド処理
+│       ├── local-files.js  # ローカルファイルUI
+│       ├── github-ui.js    # GitHub UI描画
+│       ├── tutorial.js     # チュートリアルガイド
+│       ├── scenarios.js    # 学習シナリオ
+│       ├── git-status-panel.js # Git状態パネル
+│       └── config.example.js
 ├── gas/
 │   └── Code.gs             # Google Apps Script
 └── docs/
-    └── api.md              # GAS API仕様
+    ├── api.md              # GAS API仕様
+    ├── requirements.md
+    ├── user-flow.md
+    └── implementation-plan.md
 ```
 
 ---
