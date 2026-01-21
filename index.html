@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub UI Guide</title>
+  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="stylesheet" href="src/css/github-theme.css">
+</head>
+<body>
+  <div class="app">
+    <!-- ヘッダー -->
+    <header class="header">
+      <h1 class="header__title">GitHub UI Guide</h1>
+      <button class="header__reset-btn" id="resetBtn">Reset</button>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+      <!-- GitHub UIエリア -->
+      <section class="github-ui" id="githubUI">
+        <div class="github-ui__header">
+          <span class="github-ui__repo-name">user / my-project</span>
+        </div>
+        <div class="github-ui__content" id="githubContent">
+          <!-- 空リポジトリ or ファイル一覧がここに表示される -->
+          <div class="github-ui__empty">
+            <h2>Quick setup</h2>
+            <p>Get started by creating a new file or uploading an existing file.</p>
+            <div class="github-ui__clone-url">
+              <code>https://github.com/user/my-project.git</code>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ローカルファイルエリア（clone後に表示） -->
+      <section class="local-files local-files--hidden" id="localFiles">
+        <div class="local-files__header">
+          <span class="local-files__title">Local Files</span>
+          <button class="local-files__add-btn" id="addFileBtn">+ Add File</button>
+        </div>
+        <ul class="local-files__list" id="fileList">
+          <!-- ファイル一覧がここに表示される -->
+        </ul>
+      </section>
+
+      <!-- CLIエリア -->
+      <section class="cli" id="cli">
+        <div class="cli__output" id="cliOutput">
+          <div class="cli__welcome">
+            Welcome to GitHub UI Guide!<br>
+            Type <span class="cli__command">help</span> to see available commands.
+          </div>
+        </div>
+        <div class="cli__input-line">
+          <span class="cli__prompt">$</span>
+          <input type="text" class="cli__input" id="cliInput" placeholder="Enter command..." autocomplete="off" autofocus>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ファイル追加モーダル -->
+  <div class="modal modal--hidden" id="addFileModal">
+    <div class="modal__content">
+      <h3 class="modal__title">Add New File</h3>
+      <input type="text" class="modal__input" id="newFileName" placeholder="filename.txt">
+      <div class="modal__actions">
+        <button class="modal__btn modal__btn--cancel" id="cancelAddFile">Cancel</button>
+        <button class="modal__btn modal__btn--confirm" id="confirmAddFile">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="src/js/app.js"></script>
+  <script src="src/js/cli.js"></script>
+  <script src="src/js/commands.js"></script>
+  <script src="src/js/local-files.js"></script>
+  <script src="src/js/github-ui.js"></script>
+</body>
+</html>
