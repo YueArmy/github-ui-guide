@@ -1,0 +1,469 @@
+/* =================================
+   CSS Variables - Theme Colors
+   ================================= */
+:root {
+  /* Background colors */
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+
+  /* Text colors */
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+
+  /* Accent colors */
+  --accent-blue: #58a6ff;
+  --accent-green: #3fb950;
+  --accent-red: #f85149;
+  --accent-yellow: #d29922;
+  --accent-purple: #a371f7;
+
+  /* Border colors */
+  --border-default: #30363d;
+  --border-muted: #21262d;
+
+  /* CLI colors */
+  --cli-bg: #0d1117;
+  --cli-text: #c9d1d9;
+  --cli-prompt: #3fb950;
+  --cli-error: #f85149;
+  --cli-success: #3fb950;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+/* =================================
+   Reset & Base
+   ================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+}
+
+/* =================================
+   App Layout
+   ================================= */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+/* =================================
+   Header
+   ================================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.header__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.header__reset-btn {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.header__reset-btn:hover {
+  background-color: var(--border-default);
+}
+
+/* =================================
+   Main Content
+   ================================= */
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  flex: 1;
+}
+
+/* =================================
+   GitHub UI Area
+   ================================= */
+.github-ui {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.github-ui__header {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-default);
+  background-color: var(--bg-tertiary);
+}
+
+.github-ui__repo-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent-blue);
+}
+
+.github-ui__content {
+  padding: var(--spacing-lg);
+  min-height: 200px;
+}
+
+.github-ui__empty {
+  text-align: center;
+  padding: var(--spacing-xl);
+}
+
+.github-ui__empty h2 {
+  font-size: 20px;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+.github-ui__empty p {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.github-ui__clone-url {
+  display: inline-block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+}
+
+.github-ui__clone-url code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+/* =================================
+   Local Files Area
+   ================================= */
+.local-files {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.local-files--hidden {
+  display: none;
+}
+
+.local-files__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-default);
+  background-color: var(--bg-tertiary);
+}
+
+.local-files__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.local-files__add-btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background-color: var(--accent-green);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.local-files__add-btn:hover {
+  opacity: 0.9;
+}
+
+.local-files__list {
+  list-style: none;
+  padding: var(--spacing-sm);
+}
+
+.local-files__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s;
+}
+
+.local-files__item:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.local-files__name {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.local-files__status {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+.local-files__status--untracked {
+  color: var(--accent-red);
+  background-color: rgba(248, 81, 73, 0.15);
+}
+
+.local-files__status--modified {
+  color: var(--accent-yellow);
+  background-color: rgba(210, 153, 34, 0.15);
+}
+
+.local-files__status--staged {
+  color: var(--accent-green);
+  background-color: rgba(63, 185, 80, 0.15);
+}
+
+.local-files__status--committed {
+  color: var(--text-muted);
+  background-color: var(--bg-tertiary);
+}
+
+.local-files__edit-btn {
+  padding: 2px 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background-color: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.local-files__edit-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+}
+
+/* =================================
+   CLI Area
+   ================================= */
+.cli {
+  background-color: var(--cli-bg);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex: 1;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cli__output {
+  flex: 1;
+  padding: var(--spacing-md);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cli-text);
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.cli__welcome {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.cli__command {
+  color: var(--accent-blue);
+  background-color: var(--bg-tertiary);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.cli__input-line {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-default);
+}
+
+.cli__prompt {
+  color: var(--cli-prompt);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  margin-right: var(--spacing-sm);
+}
+
+.cli__input {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--cli-text);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 13px;
+}
+
+.cli__input::placeholder {
+  color: var(--text-muted);
+}
+
+/* CLI Output Styling */
+.cli__line {
+  margin-bottom: 2px;
+}
+
+.cli__line--command {
+  color: var(--cli-text);
+}
+
+.cli__line--command::before {
+  content: '$ ';
+  color: var(--cli-prompt);
+}
+
+.cli__line--output {
+  color: var(--text-secondary);
+}
+
+.cli__line--error {
+  color: var(--cli-error);
+}
+
+.cli__line--success {
+  color: var(--cli-success);
+}
+
+/* =================================
+   Modal
+   ================================= */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal--hidden {
+  display: none;
+}
+
+.modal__content {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  min-width: 300px;
+}
+
+.modal__title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+.modal__input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 14px;
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  outline: none;
+  margin-bottom: var(--spacing-md);
+}
+
+.modal__input:focus {
+  border-color: var(--accent-blue);
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+.modal__btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modal__btn--cancel {
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-default);
+}
+
+.modal__btn--cancel:hover {
+  background-color: var(--border-default);
+}
+
+.modal__btn--confirm {
+  color: #ffffff;
+  background-color: var(--accent-green);
+  border: none;
+}
+
+.modal__btn--confirm:hover {
+  opacity: 0.9;
+}
