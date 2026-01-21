@@ -156,6 +156,7 @@ body {
   gap: var(--spacing-md);
   flex: 1;
   min-height: 0;
+  min-width: 800px;
 }
 
 /* チュートリアルは全幅 */
@@ -169,6 +170,7 @@ body {
   flex-direction: column;
   gap: var(--spacing-md);
   min-height: 0;
+  overflow: auto;
 }
 
 /* 右側: CLI */
@@ -176,6 +178,17 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 0;
+}
+
+/* =================================
+   Scrollable container
+   ================================= */
+.app {
+  min-width: 800px;
+}
+
+body {
+  overflow: auto;
 }
 
 /* =================================
