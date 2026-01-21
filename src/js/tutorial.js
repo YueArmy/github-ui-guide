@@ -106,6 +106,7 @@ function detectCurrentStep() {
 // ========================================
 
 let tutorialElement;
+let tutorialCollapsed = false;
 
 /**
  * チュートリアルガイドを更新
@@ -117,29 +118,55 @@ function renderTutorial() {
   const step = TUTORIAL_STEPS[stepKey];
   const showCopyBtn = stepKey !== 'CLONED_NO_FILES' && stepKey !== 'ALL_PUSHED';
 
-  tutorialElement.innerHTML = `
-    <div class="tutorial__header">
-      <span class="tutorial__icon">?</span>
-      <span class="tutorial__title">${step.title}</span>
-    </div>
-    <div class="tutorial__content">
-      <p class="tutorial__hint">${step.hint}</p>
-      <div class="tutorial__command">
-        <code>${step.command}</code>
-        ${showCopyBtn ? `<button class="tutorial__copy-btn" id="tutorialCopyBtn">Copy</button>` : ''}
+  if (tutorialCollapsed) {
+    tutorialElement.innerHTML = `
+      <div class="tutorial__header tutorial__header--collapsed">
+        <div class="tutorial__header-left">
+          <span class="tutorial__icon">?</span>
+          <span class="tutorial__title">${step.title}</span>
+        </div>
+        <button class="tutorial__toggle-btn" id="tutorialToggleBtn">Show</button>
       </div>
-      <p class="tutorial__explanation">${step.explanation}</p>
-    </div>
-  `;
+    `;
+    tutorialElement.classList.add('tutorial--collapsed');
+  } else {
+    tutorialElement.innerHTML = `
+      <div class="tutorial__header">
+        <div class="tutorial__header-left">
+          <span class="tutorial__icon">?</span>
+          <span class="tutorial__title">${step.title}</span>
+        </div>
+        <button class="tutorial__toggle-btn" id="tutorialToggleBtn">Hide</button>
+      </div>
+      <div class="tutorial__content">
+        <p class="tutorial__hint">${step.hint}</p>
+        <div class="tutorial__command">
+          <code>${step.command}</code>
+          ${showCopyBtn ? `<button class="tutorial__copy-btn" id="tutorialCopyBtn">Copy</button>` : ''}
+        </div>
+        <p class="tutorial__explanation">${step.explanation}</p>
+      </div>
+    `;
+    tutorialElement.classList.remove('tutorial--collapsed');
 
-  // Copyボタンのイベント設定
-  if (showCopyBtn) {
-    const copyBtn = document.getElementById('tutorialCopyBtn');
-    if (copyBtn) {
-      copyBtn.addEventListener('click', () => {
-        copyTutorialCommand(step.command);
-      });
+    // Copyボタンのイベント設定
+    if (showCopyBtn) {
+      const copyBtn = document.getElementById('tutorialCopyBtn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+          copyTutorialCommand(step.command);
+        });
+      }
     }
+  }
+
+  // Toggle ボタンのイベント設定
+  const toggleBtn = document.getElementById('tutorialToggleBtn');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      tutorialCollapsed = !tutorialCollapsed;
+      renderTutorial();
+    });
   }
 }
 

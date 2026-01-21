@@ -683,10 +683,40 @@ body {
 .tutorial__header {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  justify-content: space-between;
   padding: var(--spacing-sm) var(--spacing-md);
   background-color: rgba(88, 166, 255, 0.15);
   border-bottom: 1px solid var(--border-default);
+}
+
+.tutorial__header--collapsed {
+  border-bottom: none;
+}
+
+.tutorial__header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.tutorial__toggle-btn {
+  padding: 2px 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tutorial__toggle-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+}
+
+.tutorial--collapsed {
+  background: var(--bg-secondary);
 }
 
 .tutorial__icon {
