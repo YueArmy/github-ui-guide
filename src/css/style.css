@@ -214,8 +214,8 @@ body {
 }
 
 .github-ui__content {
-  padding: var(--spacing-lg);
-  min-height: 200px;
+  padding: var(--spacing-md);
+  min-height: 150px;
 }
 
 .github-ui__empty {
