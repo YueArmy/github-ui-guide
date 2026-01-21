@@ -16,7 +16,9 @@ const INITIAL_STATE = {
   },
   files: {},
   commits: [],
-  pushedCommitCount: 0
+  pushedCommitCount: 0,
+  branches: ['main'],
+  pullRequests: []
 };
 
 // ========================================
@@ -45,6 +47,14 @@ function getCommits() {
 
 function getPushedCommitCount() {
   return state.pushedCommitCount;
+}
+
+function getBranches() {
+  return state.branches || ['main'];
+}
+
+function getPullRequests() {
+  return state.pullRequests || [];
 }
 
 function isCloned() {
@@ -103,6 +113,82 @@ function resetState() {
   state = structuredClone(INITIAL_STATE);
   saveState();
   notifyStateChange();
+}
+
+function addBranch(branchName) {
+  if (!state.branches) {
+    state.branches = ['main'];
+  }
+  if (!state.branches.includes(branchName)) {
+    state.branches.push(branchName);
+    saveState();
+    notifyStateChange();
+  }
+}
+
+function removeBranch(branchName) {
+  if (!state.branches) return;
+  const index = state.branches.indexOf(branchName);
+  if (index > -1) {
+    state.branches.splice(index, 1);
+    saveState();
+    notifyStateChange();
+  }
+}
+
+function setCurrentBranch(branchName) {
+  state.repo.currentBranch = branchName;
+  saveState();
+  notifyStateChange();
+}
+
+function undoLastCommit() {
+  if (state.commits.length > 0) {
+    state.commits.pop();
+    saveState();
+    notifyStateChange();
+  }
+}
+
+function addPullRequest(pr) {
+  if (!state.pullRequests) {
+    state.pullRequests = [];
+  }
+  const newPR = {
+    id: state.pullRequests.length + 1,
+    title: pr.title,
+    description: pr.description || '',
+    sourceBranch: pr.sourceBranch,
+    targetBranch: pr.targetBranch || 'main',
+    status: 'open',
+    createdAt: new Date().toISOString(),
+    commits: pr.commits || []
+  };
+  state.pullRequests.push(newPR);
+  saveState();
+  notifyStateChange();
+  return newPR;
+}
+
+function updatePullRequestStatus(prId, status) {
+  if (!state.pullRequests) return;
+  const pr = state.pullRequests.find(p => p.id === prId);
+  if (pr) {
+    pr.status = status;
+    saveState();
+    notifyStateChange();
+  }
+}
+
+function mergePullRequest(prId) {
+  if (!state.pullRequests) return;
+  const pr = state.pullRequests.find(p => p.id === prId);
+  if (pr && pr.status === 'open') {
+    pr.status = 'merged';
+    pr.mergedAt = new Date().toISOString();
+    saveState();
+    notifyStateChange();
+  }
 }
 
 // ========================================

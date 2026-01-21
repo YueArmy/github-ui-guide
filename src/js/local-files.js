@@ -152,9 +152,9 @@ function handleConfirmAddFile() {
     return;
   }
 
-  // ファイル名のバリデーション
-  if (!/^[\w\-\.]+$/.test(filename)) {
-    alert('Invalid filename. Use only letters, numbers, hyphens, underscores, and dots.');
+  // ファイル名のバリデーション（日本語OK、スペースと特殊文字はNG）
+  if (!/^[^\/\\:*?"<>|]+$/.test(filename) || filename.startsWith('.')) {
+    alert('Invalid filename. Avoid special characters: / \\ : * ? " < > |');
     return;
   }
 

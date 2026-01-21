@@ -67,10 +67,11 @@ body {
 .app {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  max-width: 1200px;
+  height: 100vh;
+  max-width: 1400px;
   margin: 0 auto;
   padding: var(--spacing-md);
+  overflow: hidden;
 }
 
 /* =================================
@@ -93,6 +94,42 @@ body {
   color: var(--text-primary);
 }
 
+.header__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.header__scenario {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.header__scenario label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.header__scenario-select {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 12px;
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  outline: none;
+}
+
+.header__scenario-select:hover {
+  background-color: var(--border-default);
+}
+
+.header__scenario-select:focus {
+  border-color: var(--accent-blue);
+}
+
 .header__reset-btn {
   padding: var(--spacing-xs) var(--spacing-md);
   font-size: 12px;
@@ -113,10 +150,32 @@ body {
    Main Content
    ================================= */
 .main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: var(--spacing-md);
+  flex: 1;
+  min-height: 0;
+}
+
+/* チュートリアルは全幅 */
+.tutorial {
+  grid-column: 1 / -1;
+}
+
+/* 左側: GitHub UI + ローカルファイル */
+.main__left {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  flex: 1;
+  min-height: 0;
+}
+
+/* 右側: CLI */
+.main__right {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 /* =================================
@@ -289,6 +348,132 @@ body {
 }
 
 /* =================================
+   Git Status Panel
+   ================================= */
+.git-status {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.git-status__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  gap: var(--spacing-md);
+}
+
+.git-status__content--not-cloned {
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+}
+
+.git-status__label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.git-status__hint {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.git-status__branch {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.git-status__branch-icon {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.git-status__branch-name {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 2px 6px;
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+}
+
+.git-status__indicator {
+  font-size: 10px;
+  margin-left: 2px;
+}
+
+.git-status--clean .git-status__indicator {
+  color: var(--accent-green);
+}
+
+.git-status--modified .git-status__indicator {
+  color: var(--accent-yellow);
+}
+
+.git-status--staged .git-status__indicator {
+  color: var(--accent-green);
+}
+
+.git-status--unpushed .git-status__indicator {
+  color: var(--accent-blue);
+}
+
+.git-status__stats {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.git-status__stat {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.git-status__stat--staged {
+  color: var(--accent-green);
+  background-color: rgba(63, 185, 80, 0.15);
+}
+
+.git-status__stat--modified {
+  color: var(--accent-yellow);
+  background-color: rgba(210, 153, 34, 0.15);
+}
+
+.git-status__stat--untracked {
+  color: var(--accent-red);
+  background-color: rgba(248, 81, 73, 0.15);
+}
+
+.git-status__stat--unpushed {
+  color: var(--accent-blue);
+  background-color: rgba(88, 166, 255, 0.15);
+}
+
+.git-status__stat--clean {
+  color: var(--accent-green);
+  background-color: rgba(63, 185, 80, 0.15);
+}
+
+.git-status__commits {
+  flex-shrink: 0;
+}
+
+.git-status__commits-count {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* =================================
    CLI Area
    ================================= */
 .cli {
@@ -297,9 +482,13 @@ body {
   border-radius: var(--radius-md);
   overflow: hidden;
   flex: 1;
-  min-height: 300px;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
+}
+
+.main__right .cli {
+  height: 100%;
 }
 
 .cli__output {
@@ -466,4 +655,92 @@ body {
 
 .modal__btn--confirm:hover {
   opacity: 0.9;
+}
+
+/* =================================
+   Tutorial Guide
+   ================================= */
+.tutorial {
+  background: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(163, 113, 247, 0.1) 100%);
+  border: 1px solid var(--accent-blue);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.tutorial__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: rgba(88, 166, 255, 0.15);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.tutorial__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--bg-primary);
+  background-color: var(--accent-blue);
+  border-radius: 50%;
+}
+
+.tutorial__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-blue);
+}
+
+.tutorial__content {
+  padding: var(--spacing-md);
+}
+
+.tutorial__hint {
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.tutorial__command {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.tutorial__command code {
+  flex: 1;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 13px;
+  color: var(--accent-green);
+}
+
+.tutorial__copy-btn {
+  padding: 2px 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tutorial__copy-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+}
+
+.tutorial__explanation {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-style: italic;
 }

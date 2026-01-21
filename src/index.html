@@ -12,52 +12,75 @@
     <!-- ヘッダー -->
     <header class="header">
       <h1 class="header__title">GitHub UI Guide</h1>
-      <button class="header__reset-btn" id="resetBtn">Reset</button>
+      <div class="header__controls">
+        <div class="header__scenario">
+          <label for="scenarioSelector">Scenario:</label>
+          <select class="header__scenario-select" id="scenarioSelector">
+            <!-- 動的に生成される -->
+          </select>
+        </div>
+        <button class="header__reset-btn" id="resetBtn">Reset</button>
+      </div>
     </header>
 
     <!-- メインコンテンツ -->
     <main class="main">
-      <!-- GitHub UIエリア -->
-      <section class="github-ui" id="githubUI">
-        <div class="github-ui__header">
-          <span class="github-ui__repo-name">user / my-project</span>
-        </div>
-        <div class="github-ui__content" id="githubContent">
-          <!-- 空リポジトリ or ファイル一覧がここに表示される -->
-          <div class="github-ui__empty">
-            <h2>Quick setup</h2>
-            <p>Get started by creating a new file or uploading an existing file.</p>
-            <div class="github-ui__clone-url">
-              <code>https://github.com/user/my-project.git</code>
+      <!-- チュートリアルガイド（上部全幅） -->
+      <section class="tutorial" id="tutorialGuide">
+        <!-- 動的に表示される -->
+      </section>
+
+      <!-- 左側: GitHub UI + ローカルファイル -->
+      <div class="main__left">
+        <!-- GitHub UIエリア -->
+        <section class="github-ui" id="githubUI">
+          <div class="github-ui__header">
+            <span class="github-ui__repo-name">user / my-project</span>
+          </div>
+          <div class="github-ui__content" id="githubContent">
+            <!-- 空リポジトリ or ファイル一覧がここに表示される -->
+            <div class="github-ui__empty">
+              <h2>Quick setup</h2>
+              <p>Get started by creating a new file or uploading an existing file.</p>
+              <div class="github-ui__clone-url">
+                <code>https://github.com/user/my-project.git</code>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- ローカルファイルエリア（clone後に表示） -->
-      <section class="local-files local-files--hidden" id="localFiles">
-        <div class="local-files__header">
-          <span class="local-files__title">Local Files</span>
-          <button class="local-files__add-btn" id="addFileBtn">+ Add File</button>
-        </div>
-        <ul class="local-files__list" id="fileList">
-          <!-- ファイル一覧がここに表示される -->
-        </ul>
-      </section>
-
-      <!-- CLIエリア -->
-      <section class="cli" id="cli">
-        <div class="cli__output" id="cliOutput">
-          <div class="cli__welcome">
-            Welcome to GitHub UI Guide!<br>
-            Type <span class="cli__command">help</span> to see available commands.
+        <!-- ローカルファイルエリア（clone後に表示） -->
+        <section class="local-files local-files--hidden" id="localFiles">
+          <div class="local-files__header">
+            <span class="local-files__title">Local Files</span>
+            <button class="local-files__add-btn" id="addFileBtn">+ Add File</button>
           </div>
-        </div>
-        <div class="cli__input-line">
-          <span class="cli__prompt">$</span>
-          <input type="text" class="cli__input" id="cliInput" placeholder="Enter command..." autocomplete="off" autofocus>
-        </div>
-      </section>
+          <ul class="local-files__list" id="fileList">
+            <!-- ファイル一覧がここに表示される -->
+          </ul>
+        </section>
+      </div>
+
+      <!-- 右側: Git状態 + CLIエリア -->
+      <div class="main__right">
+        <!-- Git状態パネル -->
+        <section class="git-status" id="gitStatus">
+          <!-- 動的に表示される -->
+        </section>
+
+        <section class="cli" id="cli">
+          <div class="cli__output" id="cliOutput">
+            <div class="cli__welcome">
+              Welcome to GitHub UI Guide!<br>
+              Type <span class="cli__command">help</span> to see available commands.
+            </div>
+          </div>
+          <div class="cli__input-line">
+            <span class="cli__prompt">$</span>
+            <input type="text" class="cli__input" id="cliInput" placeholder="Enter command..." autocomplete="off" autofocus>
+          </div>
+        </section>
+      </div>
     </main>
   </div>
 
@@ -79,5 +102,8 @@
   <script src="js/commands.js"></script>
   <script src="js/local-files.js"></script>
   <script src="js/github-ui.js"></script>
+  <script src="js/tutorial.js"></script>
+  <script src="js/scenarios.js"></script>
+  <script src="js/git-status-panel.js"></script>
 </body>
 </html>
